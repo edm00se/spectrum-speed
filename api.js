@@ -2,20 +2,26 @@
 /* eslint-env browser */
 const puppeteer = require('puppeteer');
 const Observable = require('zen-observable');
-const equals = require('deep-equal'); // TODO: Use `util.isDeepStrictEqual` when targeting Node.js 10
+const equals = require('deep-equal');
 const delay = require('delay');
 
-async function prepare(browser, page, observer, options) {
-	while(true){
+async function prepare(browser, page) {
+	/* eslint-disable no-constant-condition, no-await-in-loop */
+	while (true) {
 		const result = await page.evaluate(() => {
 			const $ = document.querySelector.bind(document);
 			const btn = $('button[aria-label^=start]');
-			const btnVis = null != btn;
-			const hasSelectedServer = $('.host-list-single') ? $('.host-list-single').textContent.trim().toLowerCase() !== 'finding optimal server...' : true;;
-			let isDone = [...($('.test').classList)].includes('test--in-progress');
-			if(true === hasSelectedServer && true !== isDone && true === btnVis){
+			const btnVis = btn !== null;
+			const hasSelectedServer = $('.host-list-single') ?
+				$('.host-list-single')
+					.textContent.trim()
+					.toLowerCase() !== 'finding optimal server...' :
+				true;
+			const isDone = [...$('.test').classList].includes('test--in-progress');
+			if (hasSelectedServer === true && isDone !== true && btnVis === true) {
 				btn.click();
 			}
+
 			return {
 				isDone,
 				hasSelectedServer
@@ -24,6 +30,7 @@ async function prepare(browser, page, observer, options) {
 		if (result.isDone && result.hasSelectedServer) {
 			return;
 		}
+
 		await delay(100);
 	}
 }
@@ -31,7 +38,6 @@ async function prepare(browser, page, observer, options) {
 async function init(browser, page, observer, options) {
 	let prevResult;
 
-	/* eslint-disable no-constant-condition, no-await-in-loop */
 	while (true) {
 		const result = await page.evaluate(() => {
 			const $ = document.querySelector.bind(document);
@@ -66,7 +72,7 @@ async function init(browser, page, observer, options) {
 	/* eslint-enable no-constant-condition, no-await-in-loop */
 }
 
-module.exports = options => (
+module.exports = options =>
 	new Observable(observer => {
 		// Wrapped in async IIFE as `new Observable` can't handle async function
 		(async () => {
@@ -76,5 +82,4 @@ module.exports = options => (
 			await prepare(browser, page, observer, options);
 			await init(browser, page, observer, options);
 		})().catch(observer.error.bind(observer));
-	})
-);
+	});

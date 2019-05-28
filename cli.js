@@ -7,9 +7,7 @@ const logUpdate = require('log-update');
 const ora = require('ora');
 const api = require('./api');
 
-// TODO: make more like speed-test's display
-
-const cli = meow(`
+meow(`
 	Usage
 	  $ spectrum
 	  $ spectrum > file
@@ -52,7 +50,7 @@ function exit() {
 	if (process.stdout.isTTY) {
 		logUpdate(`\n\n    ${speed()}`);
 	} else {
-		let output = `\n${data.uploadSpeed} ${data.uploadUnit}`;
+		const output = `\n${data.uploadSpeed} ${data.uploadUnit}`;
 
 		console.log(output);
 	}
