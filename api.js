@@ -53,7 +53,7 @@ async function init(browser, page, observer, options) {
 			observer.next(result);
 		}
 
-		if (result.isDone || (options && !options.measureUpload && result.uploadSpeed)) {
+		if (result.isDone || (options && result.uploadSpeed)) {
 			browser.close();
 			observer.complete();
 			return;

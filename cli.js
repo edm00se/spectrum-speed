@@ -14,21 +14,11 @@ const cli = meow(`
 	  $ spectrum
 	  $ spectrum > file
 
-	Options
-	  --upload, -u  Measure upload speed in addition to download speed
-
 	Examples
-	  $ spectrum --upload > file && cat file
+	  $ spectrum > file && cat file
 	  17 Mbps
 	  4.4 Mbps
-`, {
-	flags: {
-		upload: {
-			type: 'boolean',
-			alias: 'u'
-		}
-	}
-});
+`, {});
 
 // Check connections
 dns.lookup('speedtestcustom.com', error => {
@@ -45,18 +35,14 @@ const downloadSpeed = () =>
 	`${data.downloadSpeed} ${chalk.dim(data.downloadUnit)} ↓`;
 
 const uploadSpeed = () =>
-	data.uploadSpeed ?
-		`${data.uploadSpeed} ${chalk.dim(data.uploadUnit)} ↑` :
-		chalk.dim('- Mbps ↑');
+		`${data.uploadSpeed} ${chalk.dim(data.uploadUnit)} ↑`;
 
 const uploadColor = string => (data.isDone ? chalk.green(string) : chalk.cyan(string));
 
 const downloadColor = string => ((data.isDone || data.uploadSpeed) ? chalk.green(string) : chalk.cyan(string));
 
 const speedText = () =>
-	cli.flags.upload ?
-		`${downloadColor(downloadSpeed())} ${chalk.dim('/')} ${uploadColor(uploadSpeed())}` :
-		downloadColor(downloadSpeed());
+		`${downloadColor(downloadSpeed())} ${chalk.dim('/')} ${uploadColor(uploadSpeed())}`;
 
 const speed = () => speedText() + '\n\n';
 
@@ -64,11 +50,7 @@ function exit() {
 	if (process.stdout.isTTY) {
 		logUpdate(`\n\n    ${speed()}`);
 	} else {
-		let output = `${data.downloadSpeed} ${data.downloadUnit}`;
-
-		if (cli.flags.upload) {
-			output += `\n${data.uploadSpeed} ${data.uploadUnit}`;
-		}
+		let output = `\n${data.uploadSpeed} ${data.uploadUnit}`;
 
 		console.log(output);
 	}
@@ -91,7 +73,7 @@ if (process.stdout.isTTY) {
 
 (async () => {
 	try {
-		await api({measureUpload: cli.flags.upload}).forEach(result => {
+		await api().forEach(result => {
 			data = result;
 		});
 
