@@ -7,16 +7,18 @@ const logUpdate = require('log-update');
 const ora = require('ora');
 const api = require('./api');
 
+// TODO: make more like speed-test's display
+
 const cli = meow(`
 	Usage
-	  $ fast
-	  $ fast > file
+	  $ spectrum
+	  $ spectrum > file
 
 	Options
 	  --upload, -u  Measure upload speed in addition to download speed
 
 	Examples
-	  $ fast --upload > file && cat file
+	  $ spectrum --upload > file && cat file
 	  17 Mbps
 	  4.4 Mbps
 `, {
@@ -29,7 +31,7 @@ const cli = meow(`
 });
 
 // Check connections
-dns.lookup('fast.com', error => {
+dns.lookup('speedtestcustom.com', error => {
 	if (error && error.code === 'ENOTFOUND') {
 		console.error(chalk.red('\n Please check your internet connection.\n'));
 		process.exit(1);
