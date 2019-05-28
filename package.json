@@ -1,16 +1,15 @@
 {
-	"name": "fast-cli",
+	"name": "spectrum-speed",
 	"version": "2.3.0",
-	"description": "Test your download and upload speed using fast.com",
+	"description": "Test your download and upload speed using Spectrum's speed test",
 	"license": "MIT",
-	"repository": "sindresorhus/fast-cli",
+	"repository": "edm00se/spectrum-speed",
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
+		"name": "Eric McCormick",
+		"url": "edm00se.codes"
 	},
 	"bin": {
-		"fast": "cli.js"
+		"spectrum": "cli.js"
 	},
 	"engines": {
 		"node": ">=8"
@@ -27,7 +26,7 @@
 		"cli",
 		"speed",
 		"test",
-		"fast",
+		"spectrum",
 		"tester",
 		"down",
 		"download",

@@ -1,8 +1,6 @@
-# fast-cli [![Build Status](https://travis-ci.org/sindresorhus/fast-cli.svg?branch=master)](https://travis-ci.org/sindresorhus/fast-cli)
+# spectrum-speed [![Build Status](https://travis-ci.org/edm00se/spectrum-speed.svg?branch=master)](https://travis-ci.org/edm00se/spectrum-speed)
 
-> Test your download and upload speed using [fast.com](https://fast.com)
-
-**[It's on Product Hunt](https://www.producthunt.com/posts/fast-cli-2)**
+> Test your download and upload speed using [Spectrum's speed test](https://www.spectrum.com/internet/speed-test)
 
 ![](screenshot.gif)
 
@@ -12,24 +10,24 @@
 Ensure you have [Node.js](https://nodejs.org) version 8+ installed. Then run the following:
 
 ```
-$ npm install --global fast-cli
+$ npm install --global spectrum-speed
 ```
 
 
 ## Usage
 
 ```
-$ fast --help
+$ spectrum --help
 
   Usage
-    $ fast
-    $ fast > file
+    $ spectrum
+    $ spectrum > file
 
   Options
     --upload, -u  Measure upload speed in addition to download speed
 
   Examples
-    $ fast --upload > file && cat file
+    $ spectrum --upload > file && cat file
     17 Mbps
     4.4 Mbps
 ```
@@ -42,4 +40,5 @@ $ fast --help
 
 ## Related
 
+- [fast-cli](https://github.com/sindresorhus/fast-cli) - Test your internet connection speed and ping using fast.com
 - [speed-test](https://github.com/sindresorhus/speed-test) - Test your internet connection speed and ping using speedtest.net
