@@ -39,10 +39,10 @@ async function init(browser, page, observer, options) {
 			return {
 				downloadSpeed: Number($('.result-tile-download .number').textContent),
 				uploadSpeed: Number($('.result-tile-upload .number').textContent),
-				latencySpeed: Number($('.results-latency .unit')).textContent,
+				pingSpeed: Number($('.results-latency .number').textContent),
 				downloadUnit: $('.result-tile-download .unit').textContent.trim(),
 				uploadUnit: $('.result-tile-upload .unit').textContent.trim(),
-				latencyUnit: $('.results-latency .unit').textContent.trim(),
+				pingUnit: $('.results-latency .unit').textContent.trim(),
 				isDone: Boolean(
 					$('.test') && [...$('.test').classList].includes('test--finished')
 				)
