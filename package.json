@@ -1,6 +1,6 @@
 {
 	"name": "spectrum-speed",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Test your download and upload speed using Spectrum's speed test",
 	"license": "MIT",
 	"repository": "edm00se/spectrum-speed",
