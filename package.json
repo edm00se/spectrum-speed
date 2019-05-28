@@ -1,12 +1,12 @@
 {
 	"name": "spectrum-speed",
-	"version": "2.3.0",
+	"version": "1.0.0",
 	"description": "Test your download and upload speed using Spectrum's speed test",
 	"license": "MIT",
 	"repository": "edm00se/spectrum-speed",
 	"author": {
 		"name": "Eric McCormick",
-		"url": "edm00se.codes"
+		"url": "https://edm00se.codes/"
 	},
 	"bin": {
 		"spectrum": "cli.js"
