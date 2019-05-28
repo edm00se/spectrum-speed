@@ -34,15 +34,17 @@ const spinner = ora();
 const downloadSpeed = () =>
 	`${data.downloadSpeed} ${chalk.dim(data.downloadUnit)} ↓`;
 
-const uploadSpeed = () =>
-		`${data.uploadSpeed} ${chalk.dim(data.uploadUnit)} ↑`;
+const downloadColor = string => ((data.isDone || data.uploadSpeed) ? chalk.green(string) : chalk.cyan(string));
+
+const uploadSpeed = () => `${data.uploadSpeed} ${chalk.dim(data.uploadUnit)} ↑`;
 
 const uploadColor = string => (data.isDone ? chalk.green(string) : chalk.cyan(string));
 
-const downloadColor = string => ((data.isDone || data.uploadSpeed) ? chalk.green(string) : chalk.cyan(string));
+const pingSpeed = () => `${data.pingSpeed} ${chalk.dim(data.pingUnit)}`;
 
-const speedText = () =>
-		`${downloadColor(downloadSpeed())} ${chalk.dim('/')} ${uploadColor(uploadSpeed())}`;
+const pingColor = string => (data.isDone ? chalk.green(string) : chalk.cyan(string));
+
+const speedText = () => `${downloadColor(downloadSpeed())} ${chalk.dim('/')} ${uploadColor(uploadSpeed())} - ${pingColor(pingSpeed())}`;
 
 const speed = () => speedText() + '\n\n';
 
