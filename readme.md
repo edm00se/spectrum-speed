@@ -1,3 +1,7 @@
+## Archived
+
+Due to a lack of time and/or willingness to maintain this repo, I am archiving it.
+
 # spectrum-speed [![Build Status](https://travis-ci.org/edm00se/spectrum-speed.svg?branch=master)](https://travis-ci.org/edm00se/spectrum-speed)
 
 > Test your download and upload speed using [Spectrum's speed test](https://www.spectrum.com/internet/speed-test)
