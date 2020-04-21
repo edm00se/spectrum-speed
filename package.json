@@ -48,7 +48,7 @@
 		"log-update": "^3.2.0",
 		"meow": "^5.0.0",
 		"ora": "^4.0.2",
-		"puppeteer": "^1.12.1",
+		"puppeteer": "^2.1.1",
 		"zen-observable": "^0.8.13"
 	},
 	"devDependencies": {
